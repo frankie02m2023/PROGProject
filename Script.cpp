@@ -48,6 +48,10 @@ namespace prog {
                 save();
                 continue;
             } 
+            if (command == "invert") {
+                invert();
+                continue;
+            }
             // TODO ...
 
         }
@@ -72,5 +76,12 @@ namespace prog {
         string filename;
         input >> filename;
         saveToPNG(filename, image);
+    }
+
+    void Script::invert() {
+     // creating reference to content of pointer to image
+     Image& image1 = *image;
+     // applying invert function to reference
+     image1.invert();
     }
 }
