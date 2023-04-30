@@ -29,6 +29,7 @@ namespace prog
     void replace(const rgb_value& red, const rgb_value& green, const rgb_value& blue, const rgb_value& red_replace, const rgb_value& green_replace, const rgb_value& blue_replace);
     void v_mirror();
     void h_mirror();
+    void add(const std::string& file, const rgb_value& red, const rgb_value& green, const rgb_value& blue, int x, int y);
   };
 }
 #endif

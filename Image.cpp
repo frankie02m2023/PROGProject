@@ -1,5 +1,7 @@
 #include "Image.hpp"
+#include "PNG.hpp"
 #include <iostream>
+
 
 namespace prog
 {
@@ -93,5 +95,27 @@ namespace prog
       }
   }
 
+  void Image::add(const std::string& file, const rgb_value& red, const rgb_value& green, const rgb_value& blue, int x, int y) {
+    //Loading the PNG file and converting it into an image
+    Image* loadedImage = loadFromPNG(file);
+    //Loop that will run through the loadedImage
+    for(int i = 0; i < loadedImage->width_; i++){
+      for(int j = 0; j < loadedImage->height_; j++){
+        //if the pixel has the "neutral" color, the loop will not do anything
+        if (loadedImage->image_[i][j].red() == red && loadedImage->image_[i][j].green() == green && loadedImage->image_[i][j].blue() == blue) {
+         continue;
+        }
+        //if it's any color besides the "neutral" color, it will copy that pixel to the image we are given
+        else {
+          image_[i + x][j + y].red() = loadedImage->image_[i][j].red();
+          image_[i + x][j + y].green() = loadedImage->image_[i][j].green();
+          image_[i + x][j + y].blue() = loadedImage->image_[i][j].blue();
+        }
+      
+      }
+    }
+    //loadFromPNG creates new Image, needs to be deleted or else it leads to a "Memory Leak"
+  delete loadedImage;
+}
 }
 

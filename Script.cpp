@@ -103,6 +103,33 @@ namespace prog {
              continue;
             }
 
+             if (command == "add"){
+             commands.push_back("add");
+             continue;
+            }
+            if(commands.size() > 0){
+             // checking if the first command in the command sequence is add
+             if(commands[0] == "add"){
+              // storing add arguments in a string vector
+              commands.push_back(command);
+              // checking if all add arguments have appended to the vector
+              if(commands.size() == 7){
+               // assigning values to function arguments, using stoi to convert the values to int as necessary
+               std::string file = commands[1];
+               rgb_value red = stoi(commands[2]);
+               rgb_value green = stoi(commands[3]);
+               rgb_value blue = stoi(commands[4]);
+               int x = stoi(commands[5]);
+               int y = stoi(commands[6]);
+               // calling add
+               add(file,red,green,blue,x, y);
+               // emptying the commands vector
+               commands.clear();
+              }
+              continue;
+             }
+            }
+
         }
             // TODO ...
 
@@ -160,8 +187,15 @@ namespace prog {
     void Script::h_mirror(){
      // creating reference to content of pointer to image
      Image& image1 = *image;
-     // applying h_mirror function to reference
+     // applying h_mirror funct->image_[i][j].red();->image_[i][j].red();ion to reference
      image1.h_mirror();
+    }
+
+    void Script::add(const std::string& file, const rgb_value& red, const rgb_value& green, const rgb_value& blue, int x, int y){
+      // creating reference to content of pointer to image
+     Image& image1 = *image;
+     // applying add function to reference
+     image1.add(file,red,green,blue,x,y);
     }
 
 }
