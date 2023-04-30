@@ -129,10 +129,37 @@ namespace prog {
               continue;
              }
             }
-
+            if (command == "fill"){
+             //appending "fill" in the command sequence
+             commands.push_back("fill");
+             continue;
+            }
+            if(commands.size() > 0){
+             // checking if the first command in the command sequence is fill
+             if(commands[0] == "fill"){
+              // storing fill arguments in a string vector
+              commands.push_back(command);
+              // checking if all fill arguments have appended to the vector
+              if(commands.size() == 8){  
+               //assing the values to the arguments using stoi to convert the values to int
+               int x = stoi(commands[1]);
+               int y = stoi(commands[2]);
+               int width = stoi(commands[3]);
+               int height = stoi(commands[4]);
+               rgb_value redfill = stoi(commands[5]);
+               rgb_value greenfill = stoi(commands[6]);
+               rgb_value bluefill = stoi(commands[7]);
+               // calling fill
+               fill(x,y,width,height,redfill,greenfill,bluefill);
+               // emptying the commands vector
+               commands.clear();
+              }
+              continue;
+             }
+            }
         }
-            // TODO ...
 
+            // TODO ...     
         }
 
     void Script::open() {
@@ -196,6 +223,12 @@ namespace prog {
      Image& image1 = *image;
      // applying add function to reference
      image1.add(file,red,green,blue,x,y);
+    }
+    
+    void Script::fill(int x, int y, int width, int height, const rgb_value& redfill, const rgb_value& greenfill, const rgb_value& bluefill){
+     Image& image1 = *image;
+     // applying fill function to reference
+     image1.fill(x,y,width,height,redfill,greenfill,bluefill);
     }
 
 }

@@ -117,5 +117,16 @@ namespace prog
     //loadFromPNG creates new Image, needs to be deleted or else it leads to a "Memory Leak"
   delete loadedImage;
 }
+  void Image::fill(int x, int y, int width, int height, const rgb_value& redfill, const rgb_value& greenfill, const rgb_value& bluefill){
+    //loop for every pixel in the bounds setted by width and weight
+    for (int i = 0; i < width; i++){
+      for (int j = 0; j < height; j++){
+        //offsetting every pixel by the x and y values and turning them into the fill values
+        image_[i + x][j + y].red() = redfill;
+        image_[i + x][j + y].green() = greenfill;
+        image_[i + x][j + y].blue() = bluefill;  
+      }
+    }
+  }
 }
 
