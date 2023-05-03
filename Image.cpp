@@ -128,5 +128,63 @@ namespace prog
       }
     }
   }
-}
+
+  void Image::crop(int x, int y, int width, int height){
+   // creating copy of image 
+   std::vector<std::vector<Color>> image1 = image_;
+   // changing image dimensions
+   width_ = width;
+   height_ = height;
+   // looping through image with new dimensions and using copy to assign pixel values to new image starting at position(0,0)
+   for(int i = 0; i < width_; i++){
+    for(int j = 0; j < height_; j++){
+     image_[i][j] = image1[x + i][y + j];
+    }
+   }
+  }
+
+  void Image::rotate_left(){
+   Color tmp;
+   int width = width_;
+   int height = height_;
+   width_ = height;
+   height_ = width;
+   std::vector<std::vector<Color>> image1(width_,std::vector<Color>(height_));
+    for(int i = 0; i < width_; i++){
+     for(int j = 0; j < height_; j++){
+      image1[i][j] = image_[j][i];
+     }
+    }
+    image_ = image1;
+    for(int i = 0; i < width_; i++){
+     for(int j = 0; j < height_ / 2; j++ ){
+      tmp = image_[i][j];
+      image_[i][j] = image_[i][height_ - 1 - j];
+      image_[i][height_ - 1 - j] = tmp;
+     }
+    }
+   }
+
+   void Image::rotate_right(){
+   Color tmp;
+   int width = width_;
+   int height = height_;
+   width_ = height;
+   height_ = width;
+   std::vector<std::vector<Color>> image1(width_,std::vector<Color>(height_));
+    for(int i = 0; i < width_; i++){
+     for(int j = 0; j < height_; j++){
+      image1[i][j] = image_[j][i];
+     }
+    }
+    image_ = image1;
+    for(int i = 0; i < width_ / 2; i++){
+     for(int j = 0; j < height_; j++ ){
+      tmp = image_[i][j];
+      image_[i][j] = image_[width_ - 1 - i][j];
+      image_[width_ - 1 - i][j] = tmp;
+     }
+    }
+   }
+  }
 

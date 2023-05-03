@@ -157,6 +157,39 @@ namespace prog {
               continue;
              }
             }
+            if(command == "crop"){
+             commands.push_back("crop");
+             continue;
+            }
+            if(commands.size() > 0){
+             // checking if the first command in the command sequence is crop
+             if(commands[0] == "crop"){
+              // storing fill arguments in a string vector
+              commands.push_back(command);
+              // checking if all fill arguments have appended to the vector
+              if(commands.size() == 5){  
+               //assing the values to the arguments using stoi to convert the values to int
+               int x = stoi(commands[1]);
+               int y = stoi(commands[2]);
+               int width = stoi(commands[3]);
+               int height = stoi(commands[4]);
+               // calling crop
+               crop(x,y,width,height);
+               // emptying the commands vector
+               commands.clear();
+              }
+              continue;
+             }
+            }
+            if(command == "rotate_left"){
+             rotate_left();
+             continue;
+            }
+            if(command == "rotate_right"){
+             rotate_right();
+             continue;
+            }
+
         }
 
             // TODO ...     
@@ -229,6 +262,24 @@ namespace prog {
      Image& image1 = *image;
      // applying fill function to reference
      image1.fill(x,y,width,height,redfill,greenfill,bluefill);
+    }
+
+    void Script::crop(int x, int y, int width, int height){
+     Image& image1 = *image;
+     // applying crop function to reference
+     image1.crop(x,y,width,height);
+    }
+
+    void Script::rotate_left(){
+     Image& image1 = *image;
+     // applying rotate_left function to reference
+     image1.rotate_left();
+    }
+
+    void Script::rotate_right(){
+     Image& image1 = *image;
+     // applying rotate_left function to reference
+     image1.rotate_right();
     }
 
 }

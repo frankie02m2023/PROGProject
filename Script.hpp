@@ -31,6 +31,9 @@ namespace prog
     void h_mirror();
     void add(const std::string& file, const rgb_value& red, const rgb_value& green, const rgb_value& blue, int x, int y);
     void fill(int x, int y, int width, int height, const rgb_value& redfill, const rgb_value& greenfill, const rgb_value& bluefill);
+    void crop(int x, int y, int width, int height);
+    void rotate_left();
+    void rotate_right();
   };
 }
 #endif
