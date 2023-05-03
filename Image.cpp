@@ -145,17 +145,22 @@ namespace prog
 
   void Image::rotate_left(){
    Color tmp;
+   // switching image dimensions
    int width = width_;
    int height = height_;
    width_ = height;
    height_ = width;
+   // creating pixel matrix with inverted dimensions
    std::vector<std::vector<Color>> image1(width_,std::vector<Color>(height_));
+   // turning image1 matrix into the transpose of image_ matrix
     for(int i = 0; i < width_; i++){
      for(int j = 0; j < height_; j++){
       image1[i][j] = image_[j][i];
      }
     }
+    // using vector copy constructor to assign image1 to image_
     image_ = image1;
+    // inverting the rows of the image pixel matrix to compute the counterclockwise rotation of the image
     for(int i = 0; i < width_; i++){
      for(int j = 0; j < height_ / 2; j++ ){
       tmp = image_[i][j];
@@ -167,17 +172,22 @@ namespace prog
 
    void Image::rotate_right(){
    Color tmp;
+   // switching image dimensions
    int width = width_;
    int height = height_;
    width_ = height;
    height_ = width;
+   // creating pixel matrix with inverted dimensions
    std::vector<std::vector<Color>> image1(width_,std::vector<Color>(height_));
+   // turning image1 matrix into the transpose of the image_ matrix
     for(int i = 0; i < width_; i++){
      for(int j = 0; j < height_; j++){
       image1[i][j] = image_[j][i];
      }
     }
+    // using vector copy constructor to assign image1 to image_
     image_ = image1;
+    // inverting the columns of pixel matrix image_ to compute the clockwise rotation of the image
     for(int i = 0; i < width_ / 2; i++){
      for(int j = 0; j < height_; j++ ){
       tmp = image_[i][j];
