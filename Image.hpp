@@ -29,6 +29,8 @@ namespace prog
     void crop(int x, int y, int width, int height);
     void rotate_left();
     void rotate_right();
+    void median_filter(int window_size);
+    void neighbourhood_vector(const std::vector<std::vector<Color>>& image,const int window_size, int row_index, int col_index, std::vector<rgb_value>& neighbourhood_vector_red, std::vector<rgb_value>& neighbourhood_vector_green, std::vector<rgb_value>& neighbourhood_vector_blue);
   };
 }
 #endif

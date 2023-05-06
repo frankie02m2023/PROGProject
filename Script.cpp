@@ -189,6 +189,27 @@ namespace prog {
              rotate_right();
              continue;
             }
+            if(command == "median_filter"){
+             commands.push_back("median_filter");
+             continue;
+            }
+            if(commands.size() > 0){
+             // checking if the first command in the command sequence is median_filter
+             if(commands[0] == "median_filter"){
+              // storing median filter arguments in a string vector
+              commands.push_back(command);
+              // checking if all median filter arguments have appended to the vector
+              if(commands.size() == 2){  
+               //assing the values to the arguments using stoi to convert the values to int
+               int window_size = stoi(commands[1]);
+               // calling median filter
+               median_filter(window_size);
+               // emptying the commands vector
+               commands.clear();
+              }
+             }
+             continue;
+            }
 
         }
 
@@ -280,6 +301,12 @@ namespace prog {
      Image& image1 = *image;
      // applying rotate_left function to reference
      image1.rotate_right();
+    }
+
+    void Script::median_filter(const int window_size){
+     Image& image1 = *image;
+     // applying median_filter function to reference
+     image1.median_filter(window_size);
     }
 
 }

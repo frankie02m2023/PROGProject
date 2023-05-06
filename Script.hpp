@@ -34,6 +34,7 @@ namespace prog
     void crop(int x, int y, int width, int height);
     void rotate_left();
     void rotate_right();
+    void median_filter(const int window_size);
   };
 }
 #endif
