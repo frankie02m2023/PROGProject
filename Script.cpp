@@ -38,10 +38,10 @@ namespace prog {
         vector<string> commands;
         while (input >> command) {
             cout << "Executing command '" << command << "' ..." << endl;
-            if (command == "open") {
+            /*if (command == "open") {
              open();
              continue;
-            }
+            }*/
             if (command == "blank") {
              blank();
              continue;
@@ -141,7 +141,7 @@ namespace prog {
               commands.push_back(command);
               // checking if all fill arguments have appended to the vector
               if(commands.size() == 8){  
-               //assing the values to the arguments using stoi to convert the values to int
+               //assigning the values to the arguments using stoi to convert the values to int
                int x = stoi(commands[1]);
                int y = stoi(commands[2]);
                int width = stoi(commands[3]);
@@ -168,7 +168,7 @@ namespace prog {
               commands.push_back(command);
               // checking if all fill arguments have appended to the vector
               if(commands.size() == 5){  
-               //assing the values to the arguments using stoi to convert the values to int
+               //assigning the values to the arguments using stoi to convert the values to int
                int x = stoi(commands[1]);
                int y = stoi(commands[2]);
                int width = stoi(commands[3]);
@@ -200,10 +200,31 @@ namespace prog {
               commands.push_back(command);
               // checking if all median filter arguments have appended to the vector
               if(commands.size() == 2){  
-               //assing the values to the arguments using stoi to convert the values to int
+               //assigning the values to the arguments using stoi to convert the values to int
                int window_size = stoi(commands[1]);
                // calling median filter
                median_filter(window_size);
+               // emptying the commands vector
+               commands.clear();
+              }
+             }
+             continue;
+            }
+            if(command == "xpm2_open"){
+             commands.push_back("xpm2_open");
+             continue;
+            }
+            if(commands.size() > 0){
+             // checking if the first command in the command sequence is xpm2_open
+             if(commands[0] == "xpm2_open"){
+              // storing xpm2_open arguments in a string vector
+              commands.push_back(command);
+              // checking if all xpm2_open arguments have appended to the vector
+              if(commands.size() == 2){  
+               //assigning the values to the arguments
+               std::string filename = commands[1];
+               // calling xpm2_open
+               xpm2_open(filename);
                // emptying the commands vector
                commands.clear();
               }
@@ -309,4 +330,7 @@ namespace prog {
      image1.median_filter(window_size);
     }
 
+    void Script::xpm2_open(const std::string& file) {
+        this->image = new Image(20, 15, {255, 255, 255});
+    }
 }

@@ -1,35 +1,104 @@
->>>> [1] median_filter1 <<<<
-Executing command 'open' ...
-Executing command 'median_filter' ...
-Executing command '3' ...
+>>>> [1] xpm2_open1 <<<<
+Executing command 'xpm2_open' ...
+Executing command 'input/blarg.xpm' ...
+Could not load image from ./output/xpm2_open1.png
+>>>> [2] xpm2_open2 <<<<
+Executing command 'xpm2_open' ...
+Executing command 'input/squares.xpm' ...
 Executing command 'save' ...
->>>> [2] median_filter2 <<<<
-Executing command 'open' ...
-Executing command 'median_filter' ...
-Executing command '5' ...
+PNG.cpp:31:30: runtime error: member call on null pointer of type 'const struct Image'
+Image.cpp:30:12: runtime error: member access within null pointer of type 'const struct Image'
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==43687==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x561639de724c bp 0x7ffeed129710 sp 0x7ffeed129700 T0)
+==43687==The signal is caused by a READ memory access.
+==43687==Hint: address points to the zero page.
+    #0 0x561639de724b in prog::Image::height() const /home/joana/Desktop/PROGProject/Image.cpp:30
+    #1 0x561639e560a8 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /home/joana/Desktop/PROGProject/PNG.cpp:31
+    #2 0x561639e0ef54 in prog::Script::save() /home/joana/Desktop/PROGProject/Script.cpp:259
+    #3 0x561639e0b9d9 in prog::Script::run() /home/joana/Desktop/PROGProject/Script.cpp:51
+    #4 0x561639dd940a in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/home/joana/Desktop/PROGProject/test+0xc540a)
+    #5 0x561639dda18d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/home/joana/Desktop/PROGProject/test+0xc618d)
+    #6 0x561639ddbf37 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/home/joana/Desktop/PROGProject/test+0xc7f37)
+    #7 0x561639dd852b in main /home/joana/Desktop/PROGProject/test.cpp:186
+    #8 0x7fd8cad60082 in __libc_start_main ../csu/libc-start.c:308
+    #9 0x561639dd80dd in _start (/home/joana/Desktop/PROGProject/test+0xc40dd)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /home/joana/Desktop/PROGProject/Image.cpp:30 in prog::Image::height() const
+==43687==ABORTING
+>>>> [3] xpm2_open3 <<<<
+Executing command 'xpm2_open' ...
+Executing command 'input/tetris.xpm' ...
 Executing command 'save' ...
->>>> [3] median_filter3 <<<<
-Executing command 'open' ...
-Executing command 'median_filter' ...
-Executing command '7' ...
-Executing command 'median_filter' ...
-Executing command '3' ...
+PNG.cpp:31:30: runtime error: member call on null pointer of type 'const struct Image'
+Image.cpp:30:12: runtime error: member access within null pointer of type 'const struct Image'
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==43688==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x561639de724c bp 0x7ffeed129710 sp 0x7ffeed129700 T0)
+==43688==The signal is caused by a READ memory access.
+==43688==Hint: address points to the zero page.
+    #0 0x561639de724b in prog::Image::height() const /home/joana/Desktop/PROGProject/Image.cpp:30
+    #1 0x561639e560a8 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /home/joana/Desktop/PROGProject/PNG.cpp:31
+    #2 0x561639e0ef54 in prog::Script::save() /home/joana/Desktop/PROGProject/Script.cpp:259
+    #3 0x561639e0b9d9 in prog::Script::run() /home/joana/Desktop/PROGProject/Script.cpp:51
+    #4 0x561639dd940a in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/home/joana/Desktop/PROGProject/test+0xc540a)
+    #5 0x561639dda18d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/home/joana/Desktop/PROGProject/test+0xc618d)
+    #6 0x561639ddbf37 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/home/joana/Desktop/PROGProject/test+0xc7f37)
+    #7 0x561639dd852b in main /home/joana/Desktop/PROGProject/test.cpp:186
+    #8 0x7fd8cad60082 in __libc_start_main ../csu/libc-start.c:308
+    #9 0x561639dd80dd in _start (/home/joana/Desktop/PROGProject/test+0xc40dd)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /home/joana/Desktop/PROGProject/Image.cpp:30 in prog::Image::height() const
+==43688==ABORTING
+>>>> [4] xpm2_open4 <<<<
+Executing command 'xpm2_open' ...
+Executing command 'input/mondrian.xpm' ...
 Executing command 'save' ...
->>>> [4] median_filter4 <<<<
-Executing command 'open' ...
-Executing command 'median_filter' ...
-Executing command '3' ...
-Executing command 'median_filter' ...
-Executing command '3' ...
+PNG.cpp:31:30: runtime error: member call on null pointer of type 'const struct Image'
+Image.cpp:30:12: runtime error: member access within null pointer of type 'const struct Image'
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==43692==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x561639de724c bp 0x7ffeed129710 sp 0x7ffeed129700 T0)
+==43692==The signal is caused by a READ memory access.
+==43692==Hint: address points to the zero page.
+    #0 0x561639de724b in prog::Image::height() const /home/joana/Desktop/PROGProject/Image.cpp:30
+    #1 0x561639e560a8 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /home/joana/Desktop/PROGProject/PNG.cpp:31
+    #2 0x561639e0ef54 in prog::Script::save() /home/joana/Desktop/PROGProject/Script.cpp:259
+    #3 0x561639e0b9d9 in prog::Script::run() /home/joana/Desktop/PROGProject/Script.cpp:51
+    #4 0x561639dd940a in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/home/joana/Desktop/PROGProject/test+0xc540a)
+    #5 0x561639dda18d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/home/joana/Desktop/PROGProject/test+0xc618d)
+    #6 0x561639ddbf37 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/home/joana/Desktop/PROGProject/test+0xc7f37)
+    #7 0x561639dd852b in main /home/joana/Desktop/PROGProject/test.cpp:186
+    #8 0x7fd8cad60082 in __libc_start_main ../csu/libc-start.c:308
+    #9 0x561639dd80dd in _start (/home/joana/Desktop/PROGProject/test+0xc40dd)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /home/joana/Desktop/PROGProject/Image.cpp:30 in prog::Image::height() const
+==43692==ABORTING
+>>>> [5] xpm2_open5 <<<<
+Executing command 'xpm2_open' ...
+Executing command 'input/lion.xpm' ...
 Executing command 'save' ...
->>>> [5] median_filter5 <<<<
-Executing command 'open' ...
-Executing command 'median_filter' ...
-Executing command '3' ...
-Executing command 'median_filter' ...
-Executing command '3' ...
-Executing command 'median_filter' ...
-Executing command '3' ...
-Executing command 'median_filter' ...
-Executing command '3' ...
-Executing command 'save' ...
+PNG.cpp:31:30: runtime error: member call on null pointer of type 'const struct Image'
+Image.cpp:30:12: runtime error: member access within null pointer of type 'const struct Image'
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==43698==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x561639de724c bp 0x7ffeed129710 sp 0x7ffeed129700 T0)
+==43698==The signal is caused by a READ memory access.
+==43698==Hint: address points to the zero page.
+    #0 0x561639de724b in prog::Image::height() const /home/joana/Desktop/PROGProject/Image.cpp:30
+    #1 0x561639e560a8 in prog::saveToPNG(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, prog::Image const*) /home/joana/Desktop/PROGProject/PNG.cpp:31
+    #2 0x561639e0ef54 in prog::Script::save() /home/joana/Desktop/PROGProject/Script.cpp:259
+    #3 0x561639e0b9d9 in prog::Script::run() /home/joana/Desktop/PROGProject/Script.cpp:51
+    #4 0x561639dd940a in prog::TestDriver::test_script(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/home/joana/Desktop/PROGProject/test+0xc540a)
+    #5 0x561639dda18d in prog::TestDriver::run_test(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/home/joana/Desktop/PROGProject/test+0xc618d)
+    #6 0x561639ddbf37 in prog::TestDriver::test_scripts(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (/home/joana/Desktop/PROGProject/test+0xc7f37)
+    #7 0x561639dd852b in main /home/joana/Desktop/PROGProject/test.cpp:186
+    #8 0x7fd8cad60082 in __libc_start_main ../csu/libc-start.c:308
+    #9 0x561639dd80dd in _start (/home/joana/Desktop/PROGProject/test+0xc40dd)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /home/joana/Desktop/PROGProject/Image.cpp:30 in prog::Image::height() const
+==43698==ABORTING
