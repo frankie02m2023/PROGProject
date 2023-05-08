@@ -38,10 +38,9 @@ namespace prog {
         vector<string> commands;
         while (input >> command) {
             cout << "Executing command '" << command << "' ..." << endl;
-            /*if (command == "open") {
+            if (command == "open") {
              open();
              continue;
-            }*/
             if (command == "blank") {
              blank();
              continue;
@@ -211,10 +210,10 @@ namespace prog {
              continue;
             }
             if(command == "xpm2_open"){
-             commands.push_back("xpm2_open");
+             xpm2_open();
              continue;
             }
-            if(commands.size() > 0){
+            /*if(commands.size() > 0){
              // checking if the first command in the command sequence is xpm2_open
              if(commands[0] == "xpm2_open"){
               // storing xpm2_open arguments in a string vector
@@ -229,8 +228,8 @@ namespace prog {
                commands.clear();
               }
              }
-             continue;
-            }
+             continue;*/
+            } 
 
         }
 
@@ -330,7 +329,9 @@ namespace prog {
      image1.median_filter(window_size);
     }
 
-    void Script::xpm2_open(const std::string& file) {
-        this->image = new Image(20, 15, {255, 255, 255});
+    void Script::xpm2_open() {
+        string filename;
+        input >> filename;
+        image = loadFromXPM2(filename);
     }
 }

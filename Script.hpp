@@ -35,7 +35,7 @@ namespace prog
     void rotate_left();
     void rotate_right();
     void median_filter(const int window_size);
-    void xpm2_open(const std::string& file);
+    void xpm2_open();
   };
 }
 #endif

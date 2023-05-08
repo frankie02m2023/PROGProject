@@ -30,8 +30,6 @@ namespace prog {
         myfile >> numberOfColors;
         myfile >> charactersPerPixel;
 
-        std::cout << "hello!";
-
 
         //create a new image with the width and height required
         Image *convertedImage =  new Image(width, height, {255, 255, 255});
@@ -47,8 +45,6 @@ namespace prog {
             blue = ((hexValue) & 0xFF) / 255.0; 
             colorKey[colorReplacement] = Color(red,green,blue);
         }
-
-        std::cout << "hello";
         
         //create variable that will allow the for loop to acces the different lines
         int rowNumber = 0;
