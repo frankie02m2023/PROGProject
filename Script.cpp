@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <math.h>
+#include <string>
 #include "Script.hpp"
 #include "PNG.hpp"
 #include "XPM2.hpp"
@@ -210,6 +211,9 @@ namespace prog {
              }
              continue;
             }
+            if(command == "xpm2_open"){
+             xpm2_open();
+            }
 
         }
 
@@ -308,5 +312,13 @@ namespace prog {
      // applying median_filter function to reference
      image1.median_filter(window_size);
     }
-
+    
+    void Script::xpm2_open(){
+     string filename;
+     // saving the name of the file that follows the command xmp2_open in filename string variable 
+     input >> filename;
+     // assigning image member variable to the image obtained by calling loadFromXPM2 function and converting the xpm2 image present in filename into a png image
+     image = loadFromXPM2(filename);
+    }
+    
 }
