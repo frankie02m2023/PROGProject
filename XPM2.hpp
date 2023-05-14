@@ -7,6 +7,6 @@
 namespace prog {
     Image* loadFromXPM2(const std::string &file);
 
-    void saveToXPM2(const std::string& file, const Image* img);
+    void saveToXPM2(const std::string& file,  Image* img);
 }
 #endif
