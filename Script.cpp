@@ -314,11 +314,18 @@ namespace prog {
     }
     
     void Script::xpm2_open(){
+        clear_image_if_any();
      string filename;
      // saving the name of the file that follows the command xmp2_open in filename string variable 
      input >> filename;
      // assigning image member variable to the image obtained by calling loadFromXPM2 function and converting the xpm2 image present in filename into a png image
      image = loadFromXPM2(filename);
     }
-    
+
+    void Script::xpm2_save() {
+        //save current image in a XPM2 format
+        string filename;
+        input >> filename;
+        saveToXPM2(filename, image);
+    }
 }

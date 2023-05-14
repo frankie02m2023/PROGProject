@@ -20,6 +20,32 @@ namespace prog {
   value = value1*16 + value2;
   return value;
 }
+string rgb2hex(rgb_value red, rgb_value green, rgb_value blue){
+    stringstream ss; 
+    stringstream sred;
+    stringstream sgreen;
+    stringstream sblue;
+    sred << hex << int(red);
+    sgreen << hex << int(green);
+    sblue << hex << int(blue);
+    string hexred = sred.str();
+    string hexgreen = sgreen.str();
+    string hexblue = sblue.str();
+
+    //making sure it has 2 elements each
+    if (hexred.size() == 1){
+        hexred = "0" + hexred;
+    } 
+    if (hexgreen.size() == 1){
+        hexgreen = "0" + hexgreen;
+    } 
+    if (hexblue.size() == 1){
+        hexblue = "0" + hexblue;
+    } 
+
+    ss  << hexred << hexgreen << hexblue;
+    return ss.str();
+}
 
 Image* loadFromXPM2(const std::string& file) {
  Color initial_color;
@@ -90,10 +116,62 @@ Image* loadFromXPM2(const std::string& file) {
   counter++;
  }
  // returning the pointer to the image created using dynamic memory allocation
+ in.close();
  return ptr_image;
 }
 
-void saveToXPM2(const std::string& file, const Image* image) {
+void saveToXPM2(const string& file, Image* image) {
 
-}
+        int h = image->height();
+        int w = image->width();
+        //storing the colors
+        vector<Color> colors;
+        bool isIn = false; 
+        //getting the numbers of colors
+        for (int i = 0; i < h; i++){
+            for (int j = 0; j < w; j++){
+                isIn = false;
+                Color c = image -> at(j, i);
+                for (Color vect : colors){
+                    if ((vect.red() == c.red()) & (vect.blue() == c.blue()) & (vect.green() == c.green())){
+                        isIn = true;
+                    }
+                }
+                if (isIn == false){
+                    colors.push_back(c);
+                }
+            }
+        }
+        
+        int charnum = 34; //variable to assing each color an ascii character ofset by 34 (")
+        //wrigting to the filename
+        ofstream myfile;
+        myfile.open(file.c_str());
+        myfile << "! XPM2" << "\n";
+        myfile << w << " " << h << " " << colors.size() << " 1" << "\n";
+        //assigning each color a character
+        for (Color vect : colors){
+            myfile << char(charnum) << " " << "c #" << (rgb2hex(vect.red(),vect.green(),vect.blue())) << "\n";
+            charnum += 1;
+        }
+        charnum = 34; //reseting the variable so it corresponds to the first color
+
+        //going over each pixel on the image
+        for (int i = 0; i < h; i++){
+            for (int j = 0; j < w; j++){
+                Color c = image -> at(j, i);
+                //getting the position of the color in the vector colors so it can write the corresponding character
+                for (long unsigned int pos = 0; pos < colors.size(); pos++){
+                    if ((colors[pos].red() == c.red()) & (colors[pos].blue() == c.blue()) & (colors[pos].green() == c.green())){
+                        myfile << char(charnum + pos);
+                    }
+                }
+
+            }
+            myfile << "\n";
+        }
+        //closing the file
+        myfile.close();
+        
+    }
 }
