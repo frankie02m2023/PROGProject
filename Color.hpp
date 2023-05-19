@@ -7,9 +7,9 @@ namespace prog
   class Color
   {
     private:
-     rgb_value red_;
-     rgb_value green_;
-     rgb_value blue_;
+      rgb_value red_;
+      rgb_value green_;
+      rgb_value blue_;
     public:
       Color();
       Color(const Color& c);
