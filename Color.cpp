@@ -35,4 +35,9 @@ namespace prog {
     rgb_value& Color::blue()  {
       return blue_;
     }
+    void Color::change(Color c){
+        red_ = c.red();
+        green_ = c.green();
+        blue_ = c.blue();
+    }
 }

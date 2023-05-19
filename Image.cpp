@@ -47,9 +47,7 @@ namespace prog
   void Image::invert(){
     for(int i = 0; i < width_; i++){
       for(int j = 0; j < height_; j++){
-        image_[i][j].red() = 255 - image_[i][j].red();
-        image_[i][j].green() = 255 - image_[i][j].green();
-        image_[i][j].blue() = 255 - image_[i][j].blue();
+        image_[i][j].change(Color {rgb_value(255 - image_[i][j].red()),rgb_value(255 - image_[i][j].green()),rgb_value(255 - image_[i][j].blue())});
       }
     }
   }
@@ -60,9 +58,7 @@ namespace prog
     for(int i = 0; i < width_; i++){
       for(int j = 0; j < height_; j++){
         average = (image_[i][j].red() + image_[i][j].green() + image_[i][j].blue()) / 3;
-        image_[i][j].red() = average;
-        image_[i][j].green() = average;
-        image_[i][j].blue() = average;
+        image_[i][j].change(Color {average,average,average});
       }
     }
   }
@@ -72,9 +68,7 @@ namespace prog
    for(int i = 0; i < width_; i++){
       for(int j = 0; j < height_; j++){
        if(image_[i][j].red() == red && image_[i][j].green() == green && image_[i][j].blue() == blue){
-         image_[i][j].red() = red_replace;
-         image_[i][j].green() = green_replace;
-         image_[i][j].blue() = blue_replace;
+         image_[i][j].change(Color {red_replace,green_replace,blue_replace});
        }
       }
     }
@@ -120,9 +114,7 @@ namespace prog
         }
         //if it's any color besides the "neutral" color, it will copy that pixel to the image we are given
         else {
-          image_[i + x][j + y].red() = loadedImage->image_[i][j].red();
-          image_[i + x][j + y].green() = loadedImage->image_[i][j].green();
-          image_[i + x][j + y].blue() = loadedImage->image_[i][j].blue();
+          image_[i + x][j + y].change(loadedImage->image_[i][j]);
         }
       
       }
@@ -135,9 +127,7 @@ namespace prog
     for (int i = 0; i < width; i++){
       for (int j = 0; j < height; j++){
         //offsetting every pixel by the x and y values and turning them into the fill values
-        image_[i + x][j + y].red() = redfill;
-        image_[i + x][j + y].green() = greenfill;
-        image_[i + x][j + y].blue() = bluefill;  
+        image_[i + x][j + y].change(Color {redfill,greenfill,bluefill});
       }
     }
   }
@@ -249,9 +239,7 @@ namespace prog
       // storing the rgb_values of the neighbourhood elements in their respective vectors by calling neighbourhood_vector
       neighbourhood_vector(image1,window_size,j,i,neighbourhood_vector_red,neighbourhood_vector_green,neighbourhood_vector_blue);
       // computing the separate median of the red, green and blue rgb_values of all pixels of the neighbourhood by calling median
-      image_[i][j].red() = median(neighbourhood_vector_red);
-      image_[i][j].green() = median(neighbourhood_vector_green);
-      image_[i][j].blue() = median(neighbourhood_vector_blue);
+      image_[i][j].change(Color {median(neighbourhood_vector_red),median(neighbourhood_vector_green),median(neighbourhood_vector_blue)});
       // clearing the neighbourhood vector before moving onto the next pixel
       neighbourhood_vector_red.clear();
       neighbourhood_vector_green.clear();
