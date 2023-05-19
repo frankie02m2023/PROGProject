@@ -13,6 +13,7 @@ namespace prog
     int width_;
     std::vector<std::vector<Color>> image_;
   public:
+    // implementing member functions and constructors
     Image(int w, int h, const Color &fill = {255, 255, 255});
     ~Image();
     int width() const;

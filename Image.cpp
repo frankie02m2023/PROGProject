@@ -6,12 +6,15 @@
 
 namespace prog
 {
+  // constructing image vector with all pixels equal to a given color fill
   Image::Image(int w, int h, const Color &fill)
   {
     height_ = h;
     width_ = w;
+    // looping over each column of the vector
     for(int i = 0; i < w; i++){
       std::vector<Color> line;
+      // looping over all the rows in each column
       for(int j = 0; j < h; j++){
        line.push_back(fill);
       }
@@ -40,6 +43,7 @@ namespace prog
      return image_[x][y];
   }
 
+  // turning all the pixels in an image into the "opposite" pixel(255 - the value of that pixel)
   void Image::invert(){
     for(int i = 0; i < width_; i++){
       for(int j = 0; j < height_; j++){
@@ -49,7 +53,8 @@ namespace prog
       }
     }
   }
-
+  
+  // turning every pixel in the image into the average of the 3 rgb values of that pixel
   void Image::to_gray_scale(){
     rgb_value average;
     for(int i = 0; i < width_; i++){
@@ -61,7 +66,8 @@ namespace prog
       }
     }
   }
-
+  
+  // replacing every pixel in the image with a certain color by a pixel with another specific color passed as a parameter
   void Image::replace(const rgb_value& red, const rgb_value& green, const rgb_value& blue, const rgb_value& red_replace, const rgb_value& green_replace, const rgb_value& blue_replace){
    for(int i = 0; i < width_; i++){
       for(int j = 0; j < height_; j++){
@@ -73,22 +79,28 @@ namespace prog
       }
     }
   }
-
+  
+  // mirroring image vertically
   void Image::v_mirror(){
    Color tmp;
+   // looping through image
    for(int i = 0; i < width_; i++){
       for(int j = 0; j <= (height_ - 1) / 2; j++){
+       // every pixel keeps the same i index as the image is mirrored vertically
        tmp = image_[i][j];
        image_[i][j] = image_[i][height_ - 1 - j];
        image_[i][height_ - 1 - j] = tmp;
        }
       }
   }
-
+  
+  // mirroring image vertically
   void Image::h_mirror(){
     Color tmp;
+    // looping through image
     for(int i = 0; i <= (width_ - 1) / 2; i++){
       for(int j = 0; j < height_; j++){
+        // every pixel keeps the same j index as the image is mirrored horizontally
        tmp = image_[i][j];
        image_[i][j] = image_[width_ - 1 - i][j];
        image_[width_ - 1 - i][j] = tmp;
@@ -97,9 +109,9 @@ namespace prog
   }
 
   void Image::add(const std::string& file, const rgb_value& red, const rgb_value& green, const rgb_value& blue, int x, int y) {
-    //Loading the PNG file and converting it into an image
+    //loading the PNG file and converting it into an image
     Image* loadedImage = loadFromPNG(file);
-    //Loop that will run through the loadedImage
+    //loop that will run through the loadedImage
     for(int i = 0; i < loadedImage->width_; i++){
       for(int j = 0; j < loadedImage->height_; j++){
         //if the pixel has the "neutral" color, the loop will not do anything
@@ -196,7 +208,7 @@ namespace prog
     }
    }
    
-   // member function to store the red, green and blue rgb_values of all the pixels that belong to a w_size x w_size neighbourhood of a pixel in 3 vectors 
+   // member function to store the red, green and blue rgb_values of all the pixels that belongs to a w_size * w_size neighbourhood of a pixel in 3 vectors 
    void Image::neighbourhood_vector(const std::vector<std::vector<Color>>& image1,const int window_size, int row_index, int col_index, std::vector<rgb_value>& neighbourhood_vector_red, std::vector<rgb_value>& neighbourhood_vector_green, std::vector<rgb_value>& neighbourhood_vector_blue){
     // computing the limits of the neighbourhood to avoid heap buffer overflow errors
     int lower_row_limit = (row_index - (window_size / 2) >= 0) ? row_index - (window_size / 2) : 0;
@@ -240,7 +252,7 @@ namespace prog
       image_[i][j].red() = median(neighbourhood_vector_red);
       image_[i][j].green() = median(neighbourhood_vector_green);
       image_[i][j].blue() = median(neighbourhood_vector_blue);
-      // clearing the neighbourhood vector before moving on the next pixel
+      // clearing the neighbourhood vector before moving onto the next pixel
       neighbourhood_vector_red.clear();
       neighbourhood_vector_green.clear();
       neighbourhood_vector_blue.clear();

@@ -142,7 +142,7 @@ namespace prog {
               commands.push_back(command);
               // checking if all fill arguments have appended to the vector
               if(commands.size() == 8){  
-               //assing the values to the arguments using stoi to convert the values to int
+               //assigning the values to the arguments using stoi to convert the values to int
                int x = stoi(commands[1]);
                int y = stoi(commands[2]);
                int width = stoi(commands[3]);
@@ -165,11 +165,11 @@ namespace prog {
             if(commands.size() > 0){
              // checking if the first command in the command sequence is crop
              if(commands[0] == "crop"){
-              // storing fill arguments in a string vector
+              // storing crop arguments in a string vector
               commands.push_back(command);
-              // checking if all fill arguments have appended to the vector
+              // checking if all crop arguments have appended to the vector
               if(commands.size() == 5){  
-               //assing the values to the arguments using stoi to convert the values to int
+               //assigning the values to the arguments using stoi to convert the values to int
                int x = stoi(commands[1]);
                int y = stoi(commands[2]);
                int width = stoi(commands[3]);
@@ -201,7 +201,7 @@ namespace prog {
               commands.push_back(command);
               // checking if all median filter arguments have appended to the vector
               if(commands.size() == 2){  
-               //assing the values to the arguments using stoi to convert the values to int
+               //assigning the values to the arguments using stoi to convert the values to int
                int window_size = stoi(commands[1]);
                // calling median filter
                median_filter(window_size);
@@ -266,55 +266,61 @@ namespace prog {
     void Script::v_mirror(){
      // creating reference to content of pointer to image
      Image& image1 = *image;
+     // applying v_mirror function to reference
      image1.v_mirror();
     }
 
     void Script::h_mirror(){
      // creating reference to content of pointer to image
      Image& image1 = *image;
-     // applying h_mirror funct->image_[i][j].red();->image_[i][j].red();ion to reference
+     // applying h_mirror function to reference
      image1.h_mirror();
     }
 
     void Script::add(const std::string& file, const rgb_value& red, const rgb_value& green, const rgb_value& blue, int x, int y){
-      // creating reference to content of pointer to image
+     // creating reference to content of pointer to image
      Image& image1 = *image;
      // applying add function to reference
      image1.add(file,red,green,blue,x,y);
     }
     
     void Script::fill(int x, int y, int width, int height, const rgb_value& redfill, const rgb_value& greenfill, const rgb_value& bluefill){
+     // creating reference to content of pointer to image
      Image& image1 = *image;
      // applying fill function to reference
      image1.fill(x,y,width,height,redfill,greenfill,bluefill);
     }
 
     void Script::crop(int x, int y, int width, int height){
+     // creating reference to content of pointer to image
      Image& image1 = *image;
      // applying crop function to reference
      image1.crop(x,y,width,height);
     }
 
     void Script::rotate_left(){
+     // creating reference to content of pointer to image
      Image& image1 = *image;
      // applying rotate_left function to reference
      image1.rotate_left();
     }
 
     void Script::rotate_right(){
+     // creating reference to content of pointer to image
      Image& image1 = *image;
      // applying rotate_left function to reference
      image1.rotate_right();
     }
 
     void Script::median_filter(const int window_size){
+     // creating reference to content of pointer to image
      Image& image1 = *image;
      // applying median_filter function to reference
      image1.median_filter(window_size);
     }
     
     void Script::xpm2_open(){
-        clear_image_if_any();
+     clear_image_if_any();
      string filename;
      // saving the name of the file that follows the command xmp2_open in filename string variable 
      input >> filename;
@@ -323,9 +329,11 @@ namespace prog {
     }
 
     void Script::xpm2_save() {
-        //save current image in a XPM2 format
-        string filename;
-        input >> filename;
-        saveToXPM2(filename, image);
+     //save current image in a XPM2 format
+     string filename;
+     // saving the name of the file that follows the command xmp2_save in filename string variable 
+     input >> filename;
+     // assigning image member variable to the image obtained by calling saveToXPM2 function and converting the xpm2 image present in filename into a png image
+     saveToXPM2(filename, image);
     }
 }
